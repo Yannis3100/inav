@@ -20,6 +20,9 @@
 #include "config/parameter_group.h"
 #include "fc/runtime_config.h"
 #include "common/time.h"
+#include "common/axis.h"
+#include "common/filter.h"
+#include "flight/smith_predictor.h"
 
 #define GYRO_SATURATION_LIMIT       1800        // 1800dps
 #define PID_SUM_LIMIT_MIN           100
@@ -181,6 +184,51 @@ typedef enum {
     AUTO,
 } fw_autotune_rate_adjustment_e;
 
+typedef struct {
+    uint8_t axis;
+    float kP;   // Proportional gain
+    float kI;   // Integral gain
+    float kD;   // Derivative gain
+    float kFF;  // Feed-forward gain
+    float kCD;  // Control Derivative
+    float kT;   // Back-calculation tracking gain
+
+    float gyroRate;
+    float rateTarget;
+
+    // Rate integrator
+    float errorGyroIf;
+    float errorGyroIfLimit;
+
+    // Used for ANGLE filtering (PT1, we don't need super-sharpness here)
+    pt1Filter_t angleFilterState;
+
+    // Rate filtering
+    rateLimitFilter_t axisAccelFilter;
+    pt1Filter_t ptermLpfState;
+    filter_t dtermLpfState;
+    filter_t dtermLpf2State;
+
+    float stickPosition;
+
+    float previousRateTarget;
+    float previousRateGyro;
+
+#ifdef USE_D_BOOST
+    pt1Filter_t dBoostLpf;
+    biquadFilter_t dBoostGyroLpf;
+    float dBoostTargetAcceleration;
+#endif
+    uint16_t pidSumLimit;
+    filterApply4FnPtr ptermFilterApplyFn;
+    bool itermLimitActive;
+    bool itermFreezeActive;
+
+    pt3Filter_t rateTargetFilter;
+
+    smithPredictor_t smithPredictor;
+} pidState_t;
+
 PG_DECLARE_PROFILE(pidProfile_t, pidProfile);
 PG_DECLARE(pidAutotuneConfig_t, pidAutotuneConfig);
 
@@ -189,6 +237,7 @@ pidBank_t * pidBankMutable(void);
 
 extern int16_t axisPID[];
 extern int32_t axisPID_P[], axisPID_I[], axisPID_D[], axisPID_F[], axisPID_Setpoint[];
+extern EXTENDED_FASTRAM pidState_t pidState[FLIGHT_DYNAMICS_INDEX_COUNT];
 
 void pidInit(void);
 bool pidInitFilters(void);

@@ -91,8 +91,53 @@ enum
     FSSP_DATAID_ASPD       = 0x0A00 ,
     FSSP_DATAID_A3         = 0x0900 ,
     FSSP_DATAID_A4         = 0x0910 ,
-    FSSP_DATAID_AZIMUTH    = 0x0460
-};
+    FSSP_DATAID_AZIMUTH    = 0x0460 ,
+    FSSP_DATAID_RC_ROLL                         = 0xA000 ,
+    FSSP_DATAID_RC_PITCH                        = 0xA001 ,
+    FSSP_DATAID_RC_YAW                          = 0xA002 ,
+    FSSP_DATAID_RC_THR                          = 0xA003 ,
+    FSSP_DATAID_PIDST_ROLL_kP                   = 0xA010 ,
+    FSSP_DATAID_PIDST_ROLL_kI                   = 0xA011 ,
+    FSSP_DATAID_PIDST_ROLL_kD                   = 0xA012 ,
+    FSSP_DATAID_PIDST_ROLL_kFF                  = 0xA013 ,
+    FSSP_DATAID_PIDST_ROLL_kCD                  = 0xA014 ,
+    FSSP_DATAID_PIDST_ROLL_kT                   = 0xA015 ,
+    FSSP_DATAID_PIDST_ROLL_GyroRate             = 0xA016 ,
+    FSSP_DATAID_PIDST_ROLL_RateTarget           = 0xA017 ,
+    FSSP_DATAID_PIDST_ROLL_AxisPID_SetPoint     = 0xA018 ,
+    FSSP_DATAID_PIDST_PITCH_kP                  = 0xA020 ,
+    FSSP_DATAID_PIDST_PITCH_kI                  = 0xA021 ,
+    FSSP_DATAID_PIDST_PITCH_kD                  = 0xA022 ,
+    FSSP_DATAID_PIDST_PITCH_kFF                 = 0xA023 ,
+    FSSP_DATAID_PIDST_PITCH_kCD                 = 0xA024 ,
+    FSSP_DATAID_PIDST_PITCH_kT                  = 0xA025 ,
+    FSSP_DATAID_PIDST_PITCH_GyroRate            = 0xA026 ,
+    FSSP_DATAID_PIDST_PITCH_RateTarget          = 0xA027 ,
+    FSSP_DATAID_PIDST_PITCH_AxisPID_SetPoint    = 0xA028 ,
+    FSSP_DATAID_PIDST_YAW_kP                    = 0xA030 ,
+    FSSP_DATAID_PIDST_YAW_kI                    = 0xA031 ,
+    FSSP_DATAID_PIDST_YAW_kD                    = 0xA032 ,
+    FSSP_DATAID_PIDST_YAW_kFF                   = 0xA033 ,
+    FSSP_DATAID_PIDST_YAW_kCD                   = 0xA034 ,
+    FSSP_DATAID_PIDST_YAW_kT                    = 0xA035 ,
+    FSSP_DATAID_PIDST_YAW_GyroRate              = 0xA036 ,
+    FSSP_DATAID_PIDST_YAW_RateTarget            = 0xA037 ,
+    FSSP_DATAID_PIDST_YAW_AxisPID_SetPoint      = 0xA038 ,
+    FSSP_DATAID_PID_CFG_ROLL_P                  = 0xA040 ,
+    FSSP_DATAID_PID_CFG_ROLL_I                  = 0xA041 ,
+    FSSP_DATAID_PID_CFG_ROLL_D                  = 0xA042 ,
+    FSSP_DATAID_PID_CFG_ROLL_FF                 = 0xA043 ,
+    FSSP_DATAID_PID_CFG_PITCH_P                 = 0xA044 ,
+    FSSP_DATAID_PID_CFG_PITCH_I                 = 0xA045 ,
+    FSSP_DATAID_PID_CFG_PITCH_D                 = 0xA046 ,
+    FSSP_DATAID_PID_CFG_PITCH_FF                = 0xA047 ,
+    FSSP_DATAID_PID_CFG_YAW_P                   = 0xA048 ,
+    FSSP_DATAID_PID_CFG_YAW_I                   = 0xA049 ,
+    FSSP_DATAID_PID_CFG_YAW_D                   = 0xA04A ,
+    FSSP_DATAID_PID_CFG_YAW_FF                  = 0xA04B ,
+    FSSP_DATAID_SYS_CFG_PROF_IDX                = 0xB000 ,
+
+    };
 
 const uint16_t frSkyDataIdTable[] = {
     FSSP_DATAID_SPEED     ,
@@ -110,20 +155,64 @@ const uint16_t frSkyDataIdTable[] = {
     //FSSP_DATAID_CELLS     ,
     //FSSP_DATAID_CELLS_LAST,
     FSSP_DATAID_HEADING   ,
-    FSSP_DATAID_FPV       ,
+    //FSSP_DATAID_FPV       ,
     FSSP_DATAID_PITCH     ,
     FSSP_DATAID_ROLL      ,
-    FSSP_DATAID_ACCX      ,
-    FSSP_DATAID_ACCY      ,
-    FSSP_DATAID_ACCZ      ,
+    //FSSP_DATAID_ACCX      ,
+    //FSSP_DATAID_ACCY      ,
+    //FSSP_DATAID_ACCZ      ,
     FSSP_DATAID_T1        ,
     FSSP_DATAID_T2        ,
     FSSP_DATAID_HOME_DIST ,
     FSSP_DATAID_GPS_ALT   ,
-    FSSP_DATAID_ASPD      ,
-    // FSSP_DATAID_A3        ,
+    //FSSP_DATAID_ASPD      ,
+    //FSSP_DATAID_A3        ,
     FSSP_DATAID_A4        ,
-    FSSP_DATAID_AZIMUTH ,
+    FSSP_DATAID_AZIMUTH     ,
+    FSSP_DATAID_RC_ROLL     ,
+    FSSP_DATAID_RC_PITCH    ,
+    //FSSP_DATAID_RC_YAW      ,
+    //FSSP_DATAID_RC_THR      ,
+    FSSP_DATAID_PIDST_ROLL_kP  ,
+    FSSP_DATAID_PIDST_ROLL_kI  ,
+    FSSP_DATAID_PIDST_ROLL_kD  ,
+//    FSSP_DATAID_PIDST_ROLL_kFF ,
+//    FSSP_DATAID_PIDST_ROLL_kCD ,
+//    FSSP_DATAID_PIDST_ROLL_kT  ,
+    FSSP_DATAID_PIDST_ROLL_GyroRate         ,
+    FSSP_DATAID_PIDST_ROLL_RateTarget       ,
+    FSSP_DATAID_PIDST_ROLL_AxisPID_SetPoint ,
+    FSSP_DATAID_PIDST_PITCH_kP              ,
+    FSSP_DATAID_PIDST_PITCH_kI              ,
+    FSSP_DATAID_PIDST_PITCH_kD              ,
+//    FSSP_DATAID_PIDST_PITCH_kFF             ,
+//    FSSP_DATAID_PIDST_PITCH_kCD             ,
+//    FSSP_DATAID_PIDST_PITCH_kT              ,
+    FSSP_DATAID_PIDST_PITCH_GyroRate        ,
+    FSSP_DATAID_PIDST_PITCH_RateTarget      ,
+    FSSP_DATAID_PIDST_PITCH_AxisPID_SetPoint,
+//    FSSP_DATAID_PIDST_YAW_kP                ,
+//    FSSP_DATAID_PIDST_YAW_kI                ,
+//    FSSP_DATAID_PIDST_YAW_kD                ,
+//    FSSP_DATAID_PIDST_YAW_kFF               ,
+//    FSSP_DATAID_PIDST_YAW_kCD               ,
+//    FSSP_DATAID_PIDST_YAW_kT                ,
+//    FSSP_DATAID_PIDST_YAW_GyroRate          ,
+//    FSSP_DATAID_PIDST_YAW_RateTarget        ,
+//    FSSP_DATAID_PIDST_YAW_AxisPID_SetPoint  ,
+      FSSP_DATAID_PID_CFG_ROLL_P              ,
+      FSSP_DATAID_PID_CFG_ROLL_I                ,
+      FSSP_DATAID_PID_CFG_ROLL_D                ,
+      FSSP_DATAID_PID_CFG_ROLL_FF                ,
+      FSSP_DATAID_PID_CFG_PITCH_P               ,
+      FSSP_DATAID_PID_CFG_PITCH_I               ,
+      FSSP_DATAID_PID_CFG_PITCH_D               ,
+      FSSP_DATAID_PID_CFG_PITCH_FF               ,
+//     FSSP_DATAID_PID_CFG_YAW_P                 ,
+//     FSSP_DATAID_PID_CFG_YAW_I                 ,
+//     FSSP_DATAID_PID_CFG_YAW_D                 ,
+//     FSSP_DATAID_PID_CFG_YAW_FF                 ,
+    FSSP_DATAID_SYS_CFG_PROF_IDX                ,
     0
 };
 
@@ -554,6 +643,182 @@ void processSmartPortTelemetry(smartPortPayload_t *payload, volatile bool *clear
                     *clearToSend = false;
                 }
 #endif
+                break;
+            case FSSP_DATAID_RC_ROLL :
+                smartPortSendPackage(id, rcCommand[ROLL] );
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_RC_PITCH :
+                smartPortSendPackage(id, rcCommand[PITCH] );
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_RC_YAW :
+                smartPortSendPackage(id, rcCommand[YAW] );
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_RC_THR :
+                smartPortSendPackage(id, rcCommand[THROTTLE] );
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_ROLL_kP :
+                smartPortSendPackage(id, lrintf(pidState[ROLL].kP*100 ));
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_ROLL_kI :
+                smartPortSendPackage(id, lrintf(pidState[ROLL].kI*100 ));
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_ROLL_kD :
+                smartPortSendPackage(id, lrintf(pidState[ROLL].kD*100 ));
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_ROLL_kFF :
+                smartPortSendPackage(id, lrintf(pidState[ROLL].kFF*100 ));
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_ROLL_kCD :
+                smartPortSendPackage(id, lrintf(pidState[ROLL].kCD*100 ));
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_ROLL_kT :
+                smartPortSendPackage(id, lrintf(pidState[ROLL].kT*100 ));
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_ROLL_GyroRate :
+                smartPortSendPackage(id, lrintf(pidState[ROLL].gyroRate*100 ));
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_ROLL_RateTarget :
+                smartPortSendPackage(id, lrintf(pidState[ROLL].rateTarget*100 ));
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_ROLL_AxisPID_SetPoint :
+                smartPortSendPackage(id, axisPID_Setpoint[ROLL]*100 );
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_PITCH_kP :
+                smartPortSendPackage(id, lrintf(pidState[PITCH].kP*100 ));
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_PITCH_kI :
+                smartPortSendPackage(id, lrintf(pidState[PITCH].kI*100 ));
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_PITCH_kD :
+                smartPortSendPackage(id, lrintf(pidState[PITCH].kD*100 ));
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_PITCH_kFF :
+                smartPortSendPackage(id, lrintf(pidState[PITCH].kFF*100 ));
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_PITCH_kCD :
+                smartPortSendPackage(id, lrintf(pidState[PITCH].kCD*100 ));
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_PITCH_kT :
+                smartPortSendPackage(id, lrintf(pidState[PITCH].kT*100 ));
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_PITCH_GyroRate :
+                smartPortSendPackage(id, lrintf(pidState[PITCH].gyroRate*100 ));
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_PITCH_RateTarget :
+                smartPortSendPackage(id, lrintf(pidState[PITCH].rateTarget*100 ));
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_PITCH_AxisPID_SetPoint :
+                smartPortSendPackage(id, axisPID_Setpoint[PITCH]*100 );
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_YAW_kP :
+                smartPortSendPackage(id, lrintf(pidState[YAW].kP*100 ));
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_YAW_kI :
+                smartPortSendPackage(id, lrintf(pidState[YAW].kI*100 ));
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_YAW_kD :
+                smartPortSendPackage(id, lrintf(pidState[YAW].kD*100 ));
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_YAW_kFF :
+                smartPortSendPackage(id, lrintf(pidState[YAW].kFF*100 ));
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_YAW_kCD :
+                smartPortSendPackage(id, lrintf(pidState[YAW].kCD*100 ));
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_YAW_kT :
+                smartPortSendPackage(id, lrintf(pidState[YAW].kT*100 ));
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_YAW_GyroRate :
+                smartPortSendPackage(id, lrintf(pidState[YAW].gyroRate*100 ));
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_YAW_RateTarget :
+                smartPortSendPackage(id, lrintf(pidState[YAW].rateTarget*100 ));
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PIDST_YAW_AxisPID_SetPoint :
+                smartPortSendPackage(id, axisPID_Setpoint[YAW]*100 );
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PID_CFG_ROLL_P :
+                smartPortSendPackage(id, pidBank()->pid[ROLL].P );
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PID_CFG_ROLL_I :
+                smartPortSendPackage(id, pidBank()->pid[ROLL].I );
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PID_CFG_ROLL_D :
+                smartPortSendPackage(id, pidBank()->pid[ROLL].D );
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PID_CFG_ROLL_FF :
+                smartPortSendPackage(id, pidBank()->pid[ROLL].FF );
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PID_CFG_PITCH_P :
+                smartPortSendPackage(id, pidBank()->pid[PITCH].P );
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PID_CFG_PITCH_I :
+                smartPortSendPackage(id, pidBank()->pid[PITCH].I );
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PID_CFG_PITCH_D :
+                smartPortSendPackage(id, pidBank()->pid[PITCH].D );
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PID_CFG_PITCH_FF :
+                smartPortSendPackage(id, pidBank()->pid[PITCH].FF );
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PID_CFG_YAW_P :
+                smartPortSendPackage(id, pidBank()->pid[YAW].P );
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PID_CFG_YAW_I :
+                smartPortSendPackage(id, pidBank()->pid[YAW].I );
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PID_CFG_YAW_D :
+                smartPortSendPackage(id, pidBank()->pid[YAW].D );
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_PID_CFG_YAW_FF :
+                smartPortSendPackage(id, pidBank()->pid[YAW].FF );
+                *clearToSend = false;
+                break;
+            case FSSP_DATAID_SYS_CFG_PROF_IDX :
+                smartPortSendPackage(id, systemConfigMutable()->current_profile_index );
+                *clearToSend = false;
                 break;
             default:
                 break;

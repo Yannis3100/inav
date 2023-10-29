@@ -64,50 +64,6 @@
 
 #include "programming/logic_condition.h"
 
-typedef struct {
-    uint8_t axis;
-    float kP;   // Proportional gain
-    float kI;   // Integral gain
-    float kD;   // Derivative gain
-    float kFF;  // Feed-forward gain
-    float kCD;  // Control Derivative
-    float kT;   // Back-calculation tracking gain
-
-    float gyroRate;
-    float rateTarget;
-
-    // Rate integrator
-    float errorGyroIf;
-    float errorGyroIfLimit;
-
-    // Used for ANGLE filtering (PT1, we don't need super-sharpness here)
-    pt1Filter_t angleFilterState;
-
-    // Rate filtering
-    rateLimitFilter_t axisAccelFilter;
-    pt1Filter_t ptermLpfState;
-    filter_t dtermLpfState;
-    filter_t dtermLpf2State;
-
-    float stickPosition;
-
-    float previousRateTarget;
-    float previousRateGyro;
-
-#ifdef USE_D_BOOST
-    pt1Filter_t dBoostLpf;
-    biquadFilter_t dBoostGyroLpf;
-    float dBoostTargetAcceleration;
-#endif
-    uint16_t pidSumLimit;
-    filterApply4FnPtr ptermFilterApplyFn;
-    bool itermLimitActive;
-    bool itermFreezeActive;
-
-    pt3Filter_t rateTargetFilter;
-
-    smithPredictor_t smithPredictor;
-} pidState_t;
 
 STATIC_FASTRAM bool pidFiltersConfigured = false;
 static EXTENDED_FASTRAM float headingHoldCosZLimit;
@@ -127,7 +83,7 @@ int32_t axisPID_F[FLIGHT_DYNAMICS_INDEX_COUNT];
 int32_t axisPID_Setpoint[FLIGHT_DYNAMICS_INDEX_COUNT];
 #endif
 
-static EXTENDED_FASTRAM pidState_t pidState[FLIGHT_DYNAMICS_INDEX_COUNT];
+EXTENDED_FASTRAM pidState_t pidState[FLIGHT_DYNAMICS_INDEX_COUNT];
 static EXTENDED_FASTRAM pt1Filter_t windupLpf[XYZ_AXIS_COUNT];
 static EXTENDED_FASTRAM uint8_t itermRelax;
 
